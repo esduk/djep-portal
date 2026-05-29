@@ -504,6 +504,36 @@ form[name="ep_form"][action*="browsemusic"],
   padding-bottom: 8px;
 }
 
+/* Terms of Service page (terms.asp): DJEP renders the privacy policy
+   iframe wrapper and the acceptance form as direct children of
+   #djep-content with no class hooks. The global 12-column grid drops
+   them into a single ~81px column, which clips the iframe and stacks
+   each word of the "To Continue..." heading on its own line. Use the
+   page-unique IDs (#djep-iframediv, #djep-tos-acceptance-wording) to
+   scope the fix without touching other pages. */
+#djep-content > #djep-iframediv,
+#djep-content > form:has(#djep-tos-acceptance-wording) {
+  grid-column: 1 / -1;
+}
+
+#djep-iframediv {
+  width: 100%;
+  min-height: 360px;
+}
+
+#djep-iframediv > iframe {
+  width: 100%;
+  min-height: 360px;
+  border: 1px solid var(--djep-border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+#djep-content > form:has(#djep-tos-acceptance-wording) #djep-tos-acceptance-wording {
+  display: block;
+  width: 100%;
+}
+
 body.djep-eventspage-ready .djep-events-subtitle,
 body.djep-profilepage-ready .djep-profile-subtitle,
 body.djep-contactpage-ready .djep-contact-subtitle,
